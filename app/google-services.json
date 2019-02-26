@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "466691059926",
+    "firebase_url": "https://nutrition-diary.firebaseio.com",
+    "project_id": "nutrition-diary",
+    "storage_bucket": "nutrition-diary.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466691059926:android:e171c7483d69d89d",
+        "android_client_info": {
+          "package_name": "com.example.nutritiondiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "466691059926-au77ks8f9vo29tn6lh8lj9v1d1rv2d38.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nutritiondiary",
+            "certificate_hash": "ce981d56405430a5037f688a3f8e988b7491a9d5"
+          }
+        },
+        {
+          "client_id": "466691059926-5naif1vtdqd5hds8ts0juavvirf6imup.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKoUoEPv1Bj1zVtG0bmQKwvW0mSSIild0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "466691059926-5naif1vtdqd5hds8ts0juavvirf6imup.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
