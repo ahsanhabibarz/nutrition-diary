@@ -115,10 +115,10 @@ public class LoginActivity extends AppCompatActivity {
 
         Glide.with(getApplicationContext()).load(R.drawable.loading_sp).into(sendcode);
 
-        String t = "+88" + phoneno.getText().toString();
+        String phone = "+88" + phoneno.getText().toString();
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                t,        // Phone number to verify
+                phone,        // Phone number to verify
                 60,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
                 LoginActivity.this,               // Activity (for callback binding)
