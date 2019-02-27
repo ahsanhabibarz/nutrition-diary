@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(!code.getText().toString().isEmpty()){
 
-            Glide.with(getApplicationContext()).load(R.drawable.loading).into(verifycode);
+            Glide.with(getApplicationContext()).load(R.drawable.loading2).into(verifycode);
             PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeSent, code.getText().toString());
             signInWithPhoneAuthCredential(credential);
 
@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             }else{
 
-                                sendcode.setImageResource(R.drawable.go);
+                                sendcode.setImageResource(R.drawable.sendtext);
 
                                 sendcode.setEnabled(true);
                             }
@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onFinish() {
 
-                                sendcode.setImageResource(R.drawable.go);
+                                sendcode.setImageResource(R.drawable.sendtext);
 
                                 sendcode.setEnabled(true);
 
@@ -172,7 +172,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         sendcode.setEnabled(true);
 
-                        sendcode.setImageResource(R.drawable.go);
+                        sendcode.setImageResource(R.drawable.sendtext);
                     }
 
                     @Override
@@ -187,7 +187,7 @@ public class LoginActivity extends AppCompatActivity {
 
             Toast.makeText(LoginActivity.this, "Please enter a valid phone number.", Toast.LENGTH_SHORT).show();
 
-            sendcode.setImageResource(R.drawable.go);
+            sendcode.setImageResource(R.drawable.sendtext);
 
             sendcode.setEnabled(true);
         }
