@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(!code.getText().toString().isEmpty()){
 
-            Glide.with(getApplicationContext()).load(R.drawable.loading_sp).into(verifycode);
+            Glide.with(getApplicationContext()).load(R.drawable.loading).into(verifycode);
             PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeSent, code.getText().toString());
             signInWithPhoneAuthCredential(credential);
 
@@ -98,9 +98,18 @@ public class LoginActivity extends AppCompatActivity {
                             // ...
                         } else {
                             // Sign in failed, display a message and update th
-                            Toast.makeText(LoginActivity.this, "Failed To Login", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Failed To Login please check internet connection and phone number", Toast.LENGTH_SHORT).show();
+
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                // The verification code entered was invalid
+                                Toast.makeText(LoginActivity.this, "Invalid verification code", Toast.LENGTH_SHORT).show();
+
+                                verifycode.setImageResource(R.drawable.ok);
+
+                            }else{
+
+                                sendcode.setImageResource(R.drawable.go);
+
+                                sendcode.setEnabled(true);
                             }
                         }
                     }
@@ -113,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
 
         sendcode.setEnabled(false);
 
-        Glide.with(getApplicationContext()).load(R.drawable.loading_sp).into(sendcode);
+        Glide.with(getApplicationContext()).load(R.drawable.loading).into(sendcode);
 
         String phone = "+88" + phoneno.getText().toString();
 
@@ -147,7 +156,6 @@ public class LoginActivity extends AppCompatActivity {
                                 sendcode.setEnabled(true);
 
                                 timer.setVisibility(View.GONE);
-                                sendcode.setVisibility(View.VISIBLE);
 
                                 code.setVisibility(View.GONE);
                                 verifycode.setVisibility(View.GONE);
@@ -163,6 +171,8 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Please enter a valid phone number.", Toast.LENGTH_SHORT).show();
 
                         sendcode.setEnabled(true);
+
+                        sendcode.setImageResource(R.drawable.go);
                     }
 
                     @Override
@@ -176,6 +186,10 @@ public class LoginActivity extends AppCompatActivity {
         }else{
 
             Toast.makeText(LoginActivity.this, "Please enter a valid phone number.", Toast.LENGTH_SHORT).show();
+
+            sendcode.setImageResource(R.drawable.go);
+
+            sendcode.setEnabled(true);
         }
 
     }
