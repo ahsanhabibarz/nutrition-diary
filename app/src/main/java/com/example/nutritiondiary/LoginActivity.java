@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(!code.getText().toString().isEmpty()){
 
-            Glide.with(getApplicationContext()).load(R.drawable.loading2).into(verifycode);
+            Glide.with(getApplicationContext()).load(R.drawable.loading).into(verifycode);
             PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeSent, code.getText().toString());
             signInWithPhoneAuthCredential(credential);
 
@@ -92,9 +92,9 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
                             FirebaseUser user = task.getResult().getUser();
+                            finish();
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             // ...
                         } else {
                             // Sign in failed, display a message and update th
