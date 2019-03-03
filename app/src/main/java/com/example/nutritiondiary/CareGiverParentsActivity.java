@@ -1,6 +1,8 @@
 package com.example.nutritiondiary;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,47 +23,38 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class CareGiverActivity extends AppCompatActivity {
+public class CareGiverParentsActivity extends AppCompatActivity {
 
+    Toolbar toolbar;
 
-    String parentid;
+    private RecyclerView parentView;
 
-    private RecyclerView childView;
-
-    boolean authState = true;
-    private RecyclerView.Adapter catAdapter;
-
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private RecyclerView.Adapter parAdapter;
 
     private FirebaseAuth mAuth;
 
     private FirebaseFirestore firebaseFirestore;
 
-    List<ChildList> childLists = null;
-
     private long doubleBackToExitPressedOnce;
 
     String s;
 
-    List<Integer> calories;
+    List<ParentsList> parentList = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_care_giver);
+        setContentView(R.layout.activity_care_giver_parents);
 
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        Bundle extras = getIntent().getExtras();
-        if(extras != null){
+        parentView = (RecyclerView)findViewById(R.id.parentsRecy);
 
-            parentid = extras.getString("parentid");
-        }
+        parentView.setHasFixedSize(true);
 
-
-
-        childView = (RecyclerView)findViewById(R.id.nRecyView);
-
-        childView.setHasFixedSize(true);
+        parentList = new ArrayList<>();
 
         mAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -71,16 +64,9 @@ public class CareGiverActivity extends AppCompatActivity {
                 .build();
         firebaseFirestore.setFirestoreSettings(settings);
 
-        childLists = new ArrayList<>();
-
-        childLists.clear();
-        calories = new ArrayList<>();
 
 
-
-
-
-        Query firestoreQuery = firebaseFirestore.collection("parents").document(parentid).collection("Childs").orderBy("name");
+        Query firestoreQuery = firebaseFirestore.collection("caregivers").document(mAuth.getCurrentUser().getUid()).collection("parents");
 
         firestoreQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -95,11 +81,11 @@ public class CareGiverActivity extends AppCompatActivity {
 
                             String postid = documentChange.getDocument().getId();
 
-                            ChildList childList = documentChange.getDocument().toObject(ChildList.class).withID(postid,"","");
+                            ParentsList parentsList = documentChange.getDocument().toObject(ParentsList.class).withID(postid,"","");
 
-                            childLists.add(childList);
+                            parentList.add(parentsList);
 
-                            catAdapter.notifyDataSetChanged();
+                            parAdapter.notifyDataSetChanged();
 
                         }
 
@@ -111,18 +97,13 @@ public class CareGiverActivity extends AppCompatActivity {
         });
 
 
-//        DividerItemDecoration divider = new DividerItemDecoration(childView.getContext(), DividerItemDecoration.VERTICAL);
-//        divider.setDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.custom_divider));
-//        childView.addItemDecoration(divider);
 
+        parentView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
 
-        childView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        parAdapter = new CareGiverParentsAdapter(parentList);
+        parAdapter.notifyDataSetChanged();
 
-        catAdapter = new ChildListAdapter(childLists);
-        catAdapter.notifyDataSetChanged();
-
-        childView.setAdapter(catAdapter);
-
+        parentView.setAdapter(parAdapter);
 
     }
 }

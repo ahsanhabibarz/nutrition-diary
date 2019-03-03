@@ -16,8 +16,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.github.aakira.expandablelayout.ExpandableLayout;
-import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -104,7 +102,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
         }
 
 
-        DocumentReference docRef = FirebaseFirestore.getInstance().collection("mothers").document(mAuth.getCurrentUser().getUid()).
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("parents").document(mAuth.getCurrentUser().getUid()).
                 collection("Childs").document(postID).collection("diary").document("2019210");
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
@@ -265,23 +263,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
                             .alpha(1f)
                             .setDuration(1000)
                             .setListener(null);
-
                 }
-
-
-//                if(!exp){
-//
-//                    holder.expand.setVisibility(View.VISIBLE);
-//                    exp = true;
-//                }
-//                else if(exp){
-//
-//                    holder.expand.setVisibility(View.GONE);
-//                    exp = false;
-//
-//                }
-
-
 
             }
         });
@@ -324,7 +306,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
             cons2 = (ConstraintLayout) mView.findViewById(R.id.constraintLayout3);
 
             pieChart = (PieChart)mView.findViewById(R.id.chart);
-            name = (TextView)mView.findViewById(R.id.name);
+            name = (TextView)mView.findViewById(R.id.childName);
             age = (TextView) mView.findViewById(R.id.age);
             bmi = (TextView) mView.findViewById(R.id.bmi);
             weight = (TextView) mView.findViewById(R.id.weight);

@@ -401,7 +401,7 @@ public class NewChildActivity extends AppCompatActivity {
         post.put("calories", calorieintake.getText().toString());
         post.put("fatper", fatper.getText().toString());
         post.put("imagepath", uri.toString());
-        firebaseFirestore.collection("mothers").document(firebaseAuth.getCurrentUser().getUid()).collection("Childs").document().set(post).addOnCompleteListener(new OnCompleteListener<Void>() {
+        firebaseFirestore.collection("parents").document(firebaseAuth.getCurrentUser().getUid()).collection("Childs").document().set(post).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 

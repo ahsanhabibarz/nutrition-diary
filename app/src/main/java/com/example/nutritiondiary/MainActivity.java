@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity
         s = String.valueOf(year)+String.valueOf(month+1)+String.valueOf(day);
 
 
-        Query firestoreQuery = firebaseFirestore.collection("mothers").document(mAuth.getCurrentUser().getUid().toString()).collection("Childs").orderBy("name");
+        Query firestoreQuery = firebaseFirestore.collection("parents").document(mAuth.getCurrentUser().getUid().toString()).collection("Childs").orderBy("name");
 
         firestoreQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -242,105 +242,26 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.action_nany) {
 
-            //startActivity(new Intent(HomeActivity.this,NanyActivity.class));
 
-            firebaseFirestore.collection("mothers").document(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            firebaseFirestore.collection("caregivers").document(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
                     if(task.getResult().exists()){
 
+                        startActivity(new Intent(MainActivity.this,CareGiverParentsActivity.class));
+                    }
 
-                        if(task.getResult().getString("parentid") != null){
+                    else {
 
-                            Intent intent = new Intent(getApplicationContext(), CareGiverActivity.class);
-                            intent.putExtra("parentid", task.getResult().getString("parentid"));
-                            startActivity(intent);
+                        Toast.makeText(MainActivity.this, "Not Nany", Toast.LENGTH_SHORT).show();
 
-                        }else{
-
-                            final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-                            final View mView = getLayoutInflater().inflate(R.layout.caregiverdialouge,null);
-
-                            final EditText parentid = (EditText) mView.findViewById(R.id.nparentid);
-
-                            final Button ok = (Button) mView.findViewById(R.id.nok);
-
-
-                            alert.setView(mView);
-                            final AlertDialog dialog = alert.create();
-
-                            ok.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-
-                                    Map<String,Object> post = new HashMap<>();
-                                    post.put("parentid", parentid.getText().toString());
-
-                                    firebaseFirestore.collection("mothers").document(mAuth.getCurrentUser().getUid())
-                                            .set(post).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-
-                                            Toast.makeText(MainActivity.this, "Successfully added as a nany", Toast.LENGTH_SHORT).show();
-
-                                        }
-                                    });
-
-                                    dialog.dismiss();
-                                }
-                            });
-
-                            dialog.show();
-
-                        }
-
-
-
-                    }else{
-
-                        final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-                        final View mView = getLayoutInflater().inflate(R.layout.caregiverdialouge,null);
-
-                        final EditText parentid = (EditText) mView.findViewById(R.id.nparentid);
-
-                        final Button ok = (Button) mView.findViewById(R.id.nok);
-
-
-                        alert.setView(mView);
-                        final AlertDialog dialog = alert.create();
-
-                        ok.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                                Map<String,Object> post = new HashMap<>();
-                                post.put("parentid", parentid.getText().toString());
-
-                                firebaseFirestore.collection("mothers").document(mAuth.getCurrentUser().getUid())
-                                        .set(post).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-
-                                        Toast.makeText(MainActivity.this, "Successfully added as a nany", Toast.LENGTH_SHORT).show();
-
-                                    }
-                                });
-
-                                dialog.dismiss();
-                            }
-                        });
-
-                        dialog.show();
                     }
 
                 }
             });
 
-
         }
-
-
 
         return super.onOptionsItemSelected(item);
     }
@@ -358,6 +279,9 @@ public class MainActivity extends AppCompatActivity
             //startActivity(new Intent(MainActivity.this,FoodDetActivity.class));
 
         } else if (id == R.id.nav_slideshow) {
+
+
+
 
         } else if (id == R.id.nav_manage) {
 
