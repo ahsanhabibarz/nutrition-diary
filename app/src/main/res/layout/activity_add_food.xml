@@ -6,4 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".AddFoodActivity">
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/foodLists"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/tool_bar" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
