@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -240,8 +241,16 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this,NewChildActivity.class));
         }
 
-        if (id == R.id.action_nany) {
+        return super.onOptionsItemSelected(item);
+    }
 
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
 
             firebaseFirestore.collection("caregivers").document(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
@@ -254,32 +263,52 @@ public class MainActivity extends AppCompatActivity
 
                     else {
 
-                        Toast.makeText(MainActivity.this, "Not Nany", Toast.LENGTH_SHORT).show();
+
+                        final AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                        final View mView = getLayoutInflater().inflate(R.layout.caregiver_dialouge,null);
+
+                        final ImageView join = (ImageView) mView.findViewById(R.id.joinascg);
+
+                        final ImageView notnow = (ImageView) mView.findViewById(R.id.notnowascg);
+
+
+                        alert.setView(mView);
+                        final AlertDialog dialog = alert.create();
+
+                        join.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                dialog.dismiss();
+                                startActivity(new Intent(MainActivity.this,BeCareGiverActivity.class));
+
+                            }
+                        });
+
+
+                        notnow.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                dialog.dismiss();
+
+                            }
+                        });
+
+                        dialog.show();
+
 
                     }
 
                 }
             });
 
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
-            //startActivity(new Intent(MainActivity.this,FoodDetActivity.class));
+            startActivity(new Intent(MainActivity.this,AddFoodActivity.class));
 
         } else if (id == R.id.nav_slideshow) {
-
 
 
 

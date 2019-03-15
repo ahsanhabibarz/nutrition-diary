@@ -1,5 +1,6 @@
 package com.example.nutritiondiary;
 
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ public class FoodNutritionAdapter extends RecyclerView.Adapter<FoodNutritionAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.nutrition_model,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_model,parent,false);
 
         return new ViewHolder(view);
     }
@@ -37,13 +38,24 @@ public class FoodNutritionAdapter extends RecyclerView.Adapter<FoodNutritionAdap
 
 
         holder.name.setText(foodNutritionLists.get(position).getName());
-        holder.carbs.setText(foodNutritionLists.get(position).getCarbs());
-        holder.calories.setText(foodNutritionLists.get(position).getCalories());
-        holder.fat.setText(foodNutritionLists.get(position).getFat());
-        holder.pro.setText(foodNutritionLists.get(position).getProtein());
+//        holder.carbs.setText(foodNutritionLists.get(position).getCarbs());
+        holder.calories.setText(foodNutritionLists.get(position).getCalories()+" kcal");
+//        holder.fat.setText(foodNutritionLists.get(position).getFat());
+//        holder.pro.setText(foodNutritionLists.get(position).getProtein());
         holder.quantity.setText(foodNutritionLists.get(position).getQuantity());
         holder.unit.setText(foodNutritionLists.get(position).getMeasurementunit());
-        holder.weight.setText(foodNutritionLists.get(position).getWeight());
+
+        if(foodNutritionLists.get(position).getWeight().equals("null")){
+
+            holder.weight.setVisibility(View.GONE);
+            holder.gramweight.setVisibility(View.GONE);
+
+        }else{
+
+            holder.weight.setText(foodNutritionLists.get(position).getWeight()+"g");
+
+        }
+
 
 
     }
@@ -64,6 +76,7 @@ public class FoodNutritionAdapter extends RecyclerView.Adapter<FoodNutritionAdap
         TextView pro;
         TextView quantity;
         TextView unit;
+        ImageView gramweight;
         TextView weight;
 
         public ViewHolder(@NonNull View itemView) {
@@ -71,14 +84,15 @@ public class FoodNutritionAdapter extends RecyclerView.Adapter<FoodNutritionAdap
 
             mView = itemView;
 
-            name = (TextView)mView.findViewById(R.id.nfname);
-            calories = (TextView)mView.findViewById(R.id.nfcalories);
-            carbs = (TextView)mView.findViewById(R.id.nfcarbs);
-            fat = (TextView)mView.findViewById(R.id.nffat);
-            pro = (TextView)mView.findViewById(R.id.nfprotein);
-            quantity = (TextView)mView.findViewById(R.id.nfquantity);
-            unit = (TextView)mView.findViewById(R.id.nfunit);
-            weight = (TextView)mView.findViewById(R.id.nfweight);
+            name = mView.findViewById(R.id.fmname);
+            calories = mView.findViewById(R.id.fmcalories);
+            gramweight = mView.findViewById(R.id.fmgramweight);
+//            carbs = (TextView)mView.findViewById(R.id.nfcarbs);
+//            fat = (TextView)mView.findViewById(R.id.nffat);
+//            pro = (TextView)mView.findViewById(R.id.nfprotein);
+            quantity = mView.findViewById(R.id.fmquantity);
+            unit = mView.findViewById(R.id.fmunit);
+            weight = mView.findViewById(R.id.fmweight);
 
         }
     }

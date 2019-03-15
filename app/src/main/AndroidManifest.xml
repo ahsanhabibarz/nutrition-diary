@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"
+        <activity android:name=".AddFoodActivity"
             android:theme="@style/AppTheme.NoActionbar"
             ></activity>
         <activity
@@ -39,7 +39,7 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionbar" />
         <activity
-            android:name=".AddFoodActivity"
+            android:name=".SplashActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionbar">
             <intent-filter>

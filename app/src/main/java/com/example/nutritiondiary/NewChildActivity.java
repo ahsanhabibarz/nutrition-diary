@@ -388,18 +388,17 @@ public class NewChildActivity extends AppCompatActivity {
 
     void addtoFirestore(Uri uri){
 
-
         Map<String,Object> post = new HashMap<>();
         post.put("name", name.getText().toString());
-        post.put("age",age.getText().toString());
-        post.put("weight",weight.getText().toString());
-        post.put("gweight", gweight.getText().toString());
-        post.put("heightft", heightft.getText().toString());
-        post.put("heightinch", heightinch.getText().toString());
-        post.put("bmi", bmi.getText().toString());
-        post.put("idealweight", idealweight.getText().toString());
-        post.put("calories", calorieintake.getText().toString());
-        post.put("fatper", fatper.getText().toString());
+        post.put("age",Double.parseDouble(age.getText().toString()));
+        post.put("weight",Double.parseDouble(weight.getText().toString()));
+        post.put("goalweight",Double.parseDouble(gweight.getText().toString()));
+        post.put("heightft", Double.parseDouble(heightft.getText().toString()));
+        post.put("heightinch",Double.parseDouble(heightinch.getText().toString()));
+        post.put("bmi", Double.parseDouble(bmi.getText().toString()));
+        post.put("idealweight",Double.parseDouble(idealweight.getText().toString()));
+        post.put("calories",Double.parseDouble(calorieintake.getText().toString()));
+        post.put("fatpercentage", Double.valueOf(fatper.getText().toString()));
         post.put("imagepath", uri.toString());
         firebaseFirestore.collection("parents").document(firebaseAuth.getCurrentUser().getUid()).collection("Childs").document().set(post).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

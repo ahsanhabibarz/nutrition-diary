@@ -67,9 +67,9 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         holder.name.setText(childLists.get(position).getName());
-        holder.age.setText(childLists.get(position).getAge()+" years");
-        holder.weight.setText(childLists.get(position).getWeight()+" kg");
-        holder.bmi.setText(childLists.get(position).getBmi());
+        holder.age.setText(String.valueOf(childLists.get(position).getAge())+" years");
+        holder.weight.setText(String.valueOf(childLists.get(position).getWeight())+" kg");
+        holder.bmi.setText(String.valueOf(childLists.get(position).getBmi()));
 
         RequestOptions placeholderReq = new RequestOptions();
         placeholderReq.placeholder(R.drawable.load);
@@ -78,22 +78,22 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
 
         final String postID = childLists.get(position).PostID;
 
-        final int totalcal = Integer.parseInt(childLists.get(position).calories);
+        final double totalcal = childLists.get(position).calories;
 
         Glide.with(holder.mView.getContext()).setDefaultRequestOptions(placeholderReq).load(childLists.get(position).getImagepath()).into(holder.image);
 
 
-        holder.idealweight.setText(childLists.get(position).getIdealweight()+" kg");
+        holder.idealweight.setText(String.valueOf(childLists.get(position).getIdealweight())+" kg");
 
-        holder.height.setText(childLists.get(position).getHeightft()+ " ft" +childLists.get(position).getHeightinch()+" inch");
+        holder.height.setText((int)childLists.get(position).getHeightft()+ " ft " +(int)childLists.get(position).getHeightinch()+" inch");
 
-        holder.fatper.setText(childLists.get(position).getFatper()+"%");
+        holder.fatper.setText(childLists.get(position).getFatpercentage()+"%");
 
-        if((Double.parseDouble(childLists.get(position).getWeight()) - Double.parseDouble(childLists.get(position).getIdealweight())) >5){
+        if((childLists.get(position).getWeight() - childLists.get(position).getIdealweight()) >5){
 
             holder.happy.setImageResource(R.drawable.sad);
 
-        }else if ((Double.parseDouble(childLists.get(position).getIdealweight()) - Double.parseDouble(childLists.get(position).getWeight())) >5){
+        }else if ((childLists.get(position).getIdealweight() - childLists.get(position).getWeight()) >5){
 
             holder.happy.setImageResource(R.drawable.sad);
         }else{
@@ -125,7 +125,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
 
                     dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
-                    pieEntries.add(new PieEntry(totalcal-Integer.parseInt(cal),"Remaining"));
+                    pieEntries.add(new PieEntry((float) (totalcal-Integer.parseInt(cal)),"Remaining"));
 
                     pieEntries.add(new PieEntry(Integer.parseInt(cal),"Consumed"));
 
@@ -136,7 +136,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
                     holder.pieChart.setUsePercentValues(false);
                     holder.pieChart.setDrawHoleEnabled(true);
                     holder.pieChart.setDragDecelerationFrictionCoef(0.99f);
-                    holder.pieChart.setCenterText(childLists.get(position).getCalories().toString());
+                    holder.pieChart.setCenterText(String.valueOf(childLists.get(position).getCalories()));
                     holder.pieChart.getDescription().setEnabled(false);
 
                     holder.pieChart.setDrawEntryLabels(false);
@@ -171,7 +171,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
 
                     dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
-                    pieEntries.add(new PieEntry(totalcal,"Remaining"));
+                    pieEntries.add(new PieEntry((float) totalcal,"Remaining"));
 
                     pieEntries.add(new PieEntry(0,"Consumed"));
 
@@ -182,7 +182,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
                     holder.pieChart.setUsePercentValues(false);
                     holder.pieChart.setDrawHoleEnabled(true);
                     holder.pieChart.setDragDecelerationFrictionCoef(0.99f);
-                    holder.pieChart.setCenterText(childLists.get(position).getCalories().toString());
+                    holder.pieChart.setCenterText(String.valueOf(childLists.get(position).getCalories()));
                     holder.pieChart.getDescription().setEnabled(false);
 
                     holder.pieChart.setDrawEntryLabels(false);

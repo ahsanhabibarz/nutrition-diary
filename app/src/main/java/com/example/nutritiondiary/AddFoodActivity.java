@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.text.Html;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,11 +42,13 @@ public class AddFoodActivity extends AppCompatActivity {
 
     private RecyclerView.Adapter adapter;
 
-    ImageView search;
+    ImageView foodloading;
 
     EditText searchBox;
 
     String url,url2;
+
+    TextView foodResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +62,11 @@ public class AddFoodActivity extends AppCompatActivity {
 
         foodNutritionLists = new ArrayList<>();
 
-        search = (ImageView)findViewById(R.id.getlist);
-
         searchBox = (EditText)findViewById(R.id.searchBox);
+
+        foodResults = (TextView)findViewById(R.id.foodresults);
+
+        foodloading = (ImageView)findViewById(R.id.foodloading);
 
         url = "https://api.nutritionix.com/v1_1/search/";
 
@@ -76,22 +82,37 @@ public class AddFoodActivity extends AppCompatActivity {
 
 
 
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+          searchBox.setOnKeyListener(new View.OnKeyListener() {
+              @Override
+              public boolean onKey(View view, int i, KeyEvent keyEvent) {
+
+                  if(keyEvent.getAction() == KeyEvent.ACTION_DOWN && i == KeyEvent.KEYCODE_ENTER){
 
 
-                foodNutritionLists.clear();
-                adapter.notifyDataSetChanged();
+                      if(searchBox.getText().toString().isEmpty()){
 
-                if(!searchBox.getText().toString().isEmpty()){
+                          foodNutritionLists.clear();
+                          adapter.notifyDataSetChanged();
+                          foodResults.setVisibility(View.VISIBLE);
+                          foodResults.setText("No results");
 
-                    loadPost(url+searchBox.getText().toString()+url2);
+                      }else{
 
-                }
+                          foodloading.setVisibility(View.VISIBLE);
+                          Glide.with(AddFoodActivity.this).load(R.drawable.loading).into(foodloading);
+                          foodNutritionLists.clear();
+                          adapter.notifyDataSetChanged();
+                          loadPost(url+searchBox.getText().toString()+url2);
 
-            }
-        });
+                      }
+
+
+                  }
+
+
+                  return false;
+              }
+          });
 
 
 
@@ -118,6 +139,21 @@ public class AddFoodActivity extends AppCompatActivity {
 
 
                             int length = array.length();
+
+                            if(length <=0){
+
+                                foodResults.setText("No results");
+
+                                foodloading.setVisibility(View.GONE);
+
+                            }else{
+
+                                foodloading.setVisibility(View.GONE);
+
+                                foodResults.setVisibility(View.GONE);
+
+                                recyclerView.setVisibility(View.VISIBLE);
+                            }
 
                             for(int i=0;i<length;i++){
 
