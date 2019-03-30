@@ -136,9 +136,9 @@ public class MainActivity extends AppCompatActivity
                         if(documentChange.getType() == DocumentChange.Type.ADDED){
 
 
-                            String postid = documentChange.getDocument().getId();
+                            String Childid = documentChange.getDocument().getId();
 
-                            ChildList childList = documentChange.getDocument().toObject(ChildList.class).withID(postid,"","");
+                            ChildList childList = documentChange.getDocument().toObject(ChildList.class).withID(Childid,"",mAuth.getCurrentUser().getUid());
 
                             childLists.add(childList);
 

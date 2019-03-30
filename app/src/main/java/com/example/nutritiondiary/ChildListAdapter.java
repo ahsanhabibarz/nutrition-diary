@@ -76,7 +76,9 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
 
         context = holder.mView.getContext();
 
-        final String postID = childLists.get(position).PostID;
+        final String Childid = childLists.get(position).PostID;
+
+        final String parentid = childLists.get(position).PostID3;
 
         final double totalcal = childLists.get(position).calories;
 
@@ -102,8 +104,8 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
         }
 
 
-        DocumentReference docRef = FirebaseFirestore.getInstance().collection("parents").document(mAuth.getCurrentUser().getUid()).
-                collection("Childs").document(postID).collection("diary").document("2019210");
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("parents").document(parentid).
+                collection("Childs").document(Childid).collection("Diary").document("2019330");
         docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot snapshot,
@@ -114,7 +116,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
 
                 if (snapshot != null && snapshot.exists()) {
 
-                    final String cal = snapshot.getString("calorie");
+                    final String cal = snapshot.getString("totalcal");
 
                     List<PieEntry> pieEntries = new ArrayList<>();
 
@@ -216,7 +218,8 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
             public void onClick(View view) {
 
                 Intent intent = new Intent(context, DiaryActivity.class);
-                intent.putExtra("postid", postID);
+                intent.putExtra("childid", Childid);
+                intent.putExtra("parentid", parentid);
                 context.startActivity(intent);
 
             }

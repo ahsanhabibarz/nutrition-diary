@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddFoodActivity"
-            android:theme="@style/AppTheme.NoActionbar"
-            ></activity>
+        <activity android:name=".EditFoodActivity"></activity>
+        <activity
+            android:name=".AddFoodActivity"
+            android:theme="@style/AppTheme.NoActionbar" />
         <activity
             android:name=".CareGiverParentsActivity"
             android:theme="@style/AppTheme.NoActionbar" />

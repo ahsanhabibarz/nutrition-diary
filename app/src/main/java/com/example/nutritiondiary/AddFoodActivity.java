@@ -50,6 +50,8 @@ public class AddFoodActivity extends AppCompatActivity {
 
     TextView foodResults;
 
+    String Childid,Parentid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,13 @@ public class AddFoodActivity extends AppCompatActivity {
 
         toolbar = (Toolbar)findViewById(R.id.autotool);
         setSupportActionBar(toolbar);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+
+            Childid = extras.getString("childid");
+            Parentid = extras.getString("parentid");
+        }
 
         recyclerView = (RecyclerView)findViewById(R.id.foodLists) ;
 
@@ -174,7 +183,7 @@ public class AddFoodActivity extends AppCompatActivity {
                                 String measurement = array.getJSONObject(i).getJSONObject("fields").getString("nf_serving_size_unit");
 
 
-                                FoodNutritionList foodNutritionList = new FoodNutritionList(name,weight,quantity,calories,fat,carbs,protein,measurement);
+                                FoodNutritionList foodNutritionList = new FoodNutritionList(name,weight,quantity,calories,fat,carbs,protein,measurement).withID("",Childid,Parentid);
 
 
                                 foodNutritionLists.add(foodNutritionList);

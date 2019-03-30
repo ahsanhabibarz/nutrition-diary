@@ -1,6 +1,6 @@
 package com.example.nutritiondiary;
 
-public class FoodNutritionList {
+public class FoodNutritionList extends  PostID {
 
     String name,weight,quantity,calories,fat,carbs,protein,measurementunit;
 

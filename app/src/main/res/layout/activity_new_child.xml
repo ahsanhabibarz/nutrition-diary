@@ -139,7 +139,7 @@
                     android:layout_height="21dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Daily Calorie Intake"
+                    android:text="Calorie Intake"
                     android:textAlignment="center"
                     android:textColor="#000"
                     android:textSize="13sp"
@@ -191,7 +191,7 @@
 
             <ImageView
                 android:id="@+id/fimage"
-                android:layout_width="192dp"
+                android:layout_width="176dp"
                 android:layout_height="256dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
