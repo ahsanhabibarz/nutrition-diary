@@ -97,7 +97,7 @@ public class DiaryActivity extends AppCompatActivity {
         //int hour = calendar.get(Calendar.HOUR_OF_DAY);
 
 
-        String s = String.valueOf(year)+String.valueOf(month+1)+String.valueOf(day-1);
+        String s = String.valueOf(year)+String.valueOf(month)+String.valueOf(day+27);
 
 
         Query fireQuery = firebaseFirestore.collection("parents").document(Parentid).collection("Childs")

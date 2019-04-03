@@ -82,6 +82,8 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
 
         final double totalcal = childLists.get(position).calories;
 
+        holder.image.setClipToOutline(true);
+
         Glide.with(holder.mView.getContext()).setDefaultRequestOptions(placeholderReq).load(childLists.get(position).getImagepath()).into(holder.image);
 
 
@@ -239,7 +241,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
 //        });
 
 
-        holder.cons2.setOnClickListener(new View.OnClickListener() {
+        holder.details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -292,11 +294,11 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
         TextView fatper;
         PieChart pieChart;
 
-        ImageView happy;
+        ImageView happy,details;
 
         ConstraintLayout expand;
 
-        ConstraintLayout constraintLayout,cons2;
+        ConstraintLayout main, constraintLayout,cons2;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -304,9 +306,9 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
 
             mView = itemView;
 
-            expand = (ConstraintLayout) mView.findViewById(R.id.expand);
+            main = (ConstraintLayout) mView.findViewById(R.id.cardView);
 
-            cons2 = (ConstraintLayout) mView.findViewById(R.id.constraintLayout3);
+            expand = (ConstraintLayout) mView.findViewById(R.id.expand);
 
             pieChart = (PieChart)mView.findViewById(R.id.chart);
             name = (TextView)mView.findViewById(R.id.childName);
@@ -321,6 +323,7 @@ public class ChildListAdapter extends RecyclerView.Adapter<ChildListAdapter.View
             image = (ImageView) mView.findViewById(R.id.childImage);
 
             happy = (ImageView)mView.findViewById(R.id.happy);
+            details = (ImageView)mView.findViewById(R.id.details);
 
             //constraintLayout = (ConstraintLayout)mView.findViewById(R.id.constraintLayout2);
 

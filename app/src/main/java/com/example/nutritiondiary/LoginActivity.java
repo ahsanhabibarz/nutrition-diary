@@ -103,11 +103,11 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 Toast.makeText(LoginActivity.this, "Invalid verification code", Toast.LENGTH_SHORT).show();
 
-                                verifycode.setImageResource(R.drawable.ok);
+                                verifycode.setImageResource(R.drawable.verify);
 
                             }else{
 
-                                sendcode.setImageResource(R.drawable.sendtext);
+                                sendcode.setImageResource(R.drawable.send);
 
                                 sendcode.setEnabled(true);
                             }
@@ -128,20 +128,20 @@ public class LoginActivity extends AppCompatActivity {
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phone,        // Phone number to verify
-                60,                 // Timeout duration
+                120,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
                 LoginActivity.this,               // Activity (for callback binding)
                 new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
 
-                        sendcode.setImageResource(R.drawable.pverified);
+                        sendcode.setImageResource(R.drawable.sent);
                         timer.setVisibility(View.VISIBLE);
                         code.setVisibility(View.VISIBLE);
                         verifycode.setVisibility(View.VISIBLE);
 
 
-                        CountDownTimer countDownTimer = new CountDownTimer(60000, 1000) {
+                        CountDownTimer countDownTimer = new CountDownTimer(120000, 1000) {
                             @Override
                             public void onTick(long l) {
 
@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onFinish() {
 
-                                sendcode.setImageResource(R.drawable.sendtext);
+                                sendcode.setImageResource(R.drawable.send);
 
                                 sendcode.setEnabled(true);
 
@@ -172,8 +172,10 @@ public class LoginActivity extends AppCompatActivity {
 
                         sendcode.setEnabled(true);
 
-                        sendcode.setImageResource(R.drawable.sendtext);
+                        sendcode.setImageResource(R.drawable.send);
                     }
+
+
 
                     @Override
                     public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
@@ -187,7 +189,7 @@ public class LoginActivity extends AppCompatActivity {
 
             Toast.makeText(LoginActivity.this, "Please enter a valid phone number.", Toast.LENGTH_SHORT).show();
 
-            sendcode.setImageResource(R.drawable.sendtext);
+            sendcode.setImageResource(R.drawable.send);
 
             sendcode.setEnabled(true);
         }

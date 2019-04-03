@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class FoodNutritionAdapter extends RecyclerView.Adapter<FoodNutritionAdapter.ViewHolder> {
 
-    public List<FoodNutritionList> foodNutritionLists;
+    public List<MealList> foodNutritionLists;
 
-    public FoodNutritionAdapter(List<FoodNutritionList> foodNutritionLists) {
+    public FoodNutritionAdapter(List<MealList> foodNutritionLists) {
         this.foodNutritionLists = foodNutritionLists;
     }
 
@@ -47,17 +47,17 @@ public class FoodNutritionAdapter extends RecyclerView.Adapter<FoodNutritionAdap
         holder.calories.setText(foodNutritionLists.get(position).getCalories()+" kcal");
 //        holder.fat.setText(foodNutritionLists.get(position).getFat());
 //        holder.pro.setText(foodNutritionLists.get(position).getProtein());
-        holder.quantity.setText(foodNutritionLists.get(position).getQuantity());
-        holder.unit.setText(foodNutritionLists.get(position).getMeasurementunit());
+        holder.quantity.setText(String.valueOf(foodNutritionLists.get(position).getQuantity()));
+        holder.unit.setText(foodNutritionLists.get(position).getUnit());
 
-        if(foodNutritionLists.get(position).getWeight().equals("null")){
+        if((foodNutritionLists.get(position).getWeight())<= 0){
 
             holder.weight.setVisibility(View.GONE);
             holder.gramweight.setVisibility(View.GONE);
 
         }else{
 
-            holder.weight.setText(foodNutritionLists.get(position).getWeight()+"g");
+            holder.weight.setText(String.valueOf(foodNutritionLists.get(position).getWeight())+"g");
 
         }
 
@@ -71,6 +71,15 @@ public class FoodNutritionAdapter extends RecyclerView.Adapter<FoodNutritionAdap
                 intent.putExtra("parentid", Parentid);
 
                 intent.putExtra("name", foodNutritionLists.get(expos).getName());
+                intent.putExtra("calories", foodNutritionLists.get(expos).getCalories());
+                intent.putExtra("carbs", foodNutritionLists.get(expos).getCarbs());
+                intent.putExtra("fat", foodNutritionLists.get(expos).getFat());
+                intent.putExtra("protein", foodNutritionLists.get(expos).getProtein());
+                intent.putExtra("fiber", foodNutritionLists.get(expos).getFiber());
+                intent.putExtra("quantity", foodNutritionLists.get(expos).getQuantity());
+                intent.putExtra("suger", foodNutritionLists.get(expos).getSuger());
+                intent.putExtra("unit", foodNutritionLists.get(expos).getUnit());
+                intent.putExtra("weight", foodNutritionLists.get(expos).getWeight());
 
 
                 holder.mView.getContext().startActivity(intent);

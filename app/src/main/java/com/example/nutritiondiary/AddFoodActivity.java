@@ -36,7 +36,7 @@ public class AddFoodActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     StringRequest stringRequest;
 
-    private List<FoodNutritionList> foodNutritionLists;
+    private List<MealList> foodNutritionLists;
 
     private RecyclerView recyclerView;
 
@@ -79,14 +79,14 @@ public class AddFoodActivity extends AppCompatActivity {
 
         url = "https://api.nutritionix.com/v1_1/search/";
 
-        url2 = "?results=0:20&fields=item_name,nf_serving_weight_grams,item_id,nf_calories,nf_protein,nf_total_fat,nf_total_carbohydrate,nf_dietary_fiber,nf_serving_weight_grams,nf_serving_size_qty,nf_serving_size_unit&appId=64a235a8&appKey=623f50e1ab950a1e19a9b331df52d920";
+        url2 = "?results=0:20&fields=item_name,nf_serving_weight_grams,item_id,nf_calories,nf_sugars,nf_protein,nf_total_fat,nf_total_carbohydrate,nf_dietary_fiber,nf_serving_weight_grams,nf_serving_size_qty,nf_serving_size_unit&appId=64a235a8&appKey=623f50e1ab950a1e19a9b331df52d920";
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
 //        SnapHelper snapHelper = new PagerSnapHelper();
 //        snapHelper.attachToRecyclerView(recyclerView);
-          adapter = new FoodNutritionAdapter(foodNutritionLists);
+          adapter = new MealsAdapter(foodNutritionLists);
           adapter.notifyDataSetChanged();
 
 
@@ -170,6 +170,16 @@ public class AddFoodActivity extends AppCompatActivity {
 
                                 String weight = array.getJSONObject(i).getJSONObject("fields").getString("nf_serving_weight_grams");
 
+                                double mweight;
+
+                                if(weight.equals("null")){
+
+                                    mweight = 0;
+                                }else{
+
+                                    mweight = Double.parseDouble(weight);
+                                }
+
                                 String quantity = array.getJSONObject(i).getJSONObject("fields").getString("nf_serving_size_qty");
 
                                 String calories = array.getJSONObject(i).getJSONObject("fields").getString("nf_calories");
@@ -180,10 +190,44 @@ public class AddFoodActivity extends AppCompatActivity {
 
                                 String protein = array.getJSONObject(i).getJSONObject("fields").getString("nf_protein");
 
-                                String measurement = array.getJSONObject(i).getJSONObject("fields").getString("nf_serving_size_unit");
+                                String unit = array.getJSONObject(i).getJSONObject("fields").getString("nf_serving_size_unit");
+
+                                String fiber = array.getJSONObject(i).getJSONObject("fields").getString("nf_dietary_fiber");
+
+                                double mfiber;
+
+                                if(fiber.equals("null")){
+
+                                    mfiber = 0;
+                                }else{
+
+                                    mfiber = Double.parseDouble(fiber);
+                                }
 
 
-                                FoodNutritionList foodNutritionList = new FoodNutritionList(name,weight,quantity,calories,fat,carbs,protein,measurement).withID("",Childid,Parentid);
+
+                                String sugar = array.getJSONObject(i).getJSONObject("fields").getString("nf_sugars");
+
+                                double msuger;
+
+                                if(sugar.equals("null")){
+
+                                    msuger = 0;
+                                }else{
+
+                                    msuger = Double.parseDouble(sugar);
+                                }
+
+
+                                MealList foodNutritionList = new MealList(name,unit,"",
+                                        Double.parseDouble(calories),
+                                        Double.parseDouble(carbs),
+                                        Double.parseDouble(fat),
+                                        mfiber,
+                                        Double.parseDouble(protein),
+                                        Double.parseDouble(quantity),
+                                        msuger,
+                                        mweight,0).withID("",Childid,Parentid);
 
 
                                 foodNutritionLists.add(foodNutritionList);
@@ -205,7 +249,7 @@ public class AddFoodActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(AddFoodActivity.this, "Connection Eror", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddFoodActivity.this, "Connection Error", Toast.LENGTH_SHORT).show();
             }
         });
 
