@@ -105,6 +105,8 @@ public class NewChildActivity extends AppCompatActivity {
 
         childImage = (ImageView)findViewById(R.id.fimage);
 
+        childImage.setClipToOutline(true);
+
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

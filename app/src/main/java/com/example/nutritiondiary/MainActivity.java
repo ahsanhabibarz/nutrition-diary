@@ -154,9 +154,9 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-//        DividerItemDecoration divider = new DividerItemDecoration(childView.getContext(), DividerItemDecoration.VERTICAL);
-//        divider.setDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.custom_divider));
-//        childView.addItemDecoration(divider);
+        DividerItemDecoration divider = new DividerItemDecoration(childView.getContext(), DividerItemDecoration.VERTICAL);
+        divider.setDrawable(ContextCompat.getDrawable(getBaseContext(), R.drawable.custom_divider));
+        childView.addItemDecoration(divider);
 
 
         childView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

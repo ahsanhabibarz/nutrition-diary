@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEEEEE"
+    android:background="#FFF"
     tools:context=".NewChildActivity">
 
 
@@ -12,6 +12,7 @@
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#FFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -36,22 +37,40 @@
                 android:paddingBottom="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/fimage"
-                app:layout_constraintTop_toBottomOf="@+id/textView6">
+                app:layout_constraintTop_toTopOf="parent">
 
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="Nutrition Analysis"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:text="BMI"
                     android:textAlignment="center"
                     android:textColor="#000"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
                 <TextView
                     android:id="@+id/textView15"
@@ -71,14 +90,14 @@
                     android:id="@+id/bmi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:text="0.00"
                     android:textAlignment="center"
                     android:textColor="#000"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
                 <TextView
                     android:id="@+id/calorieintake"
@@ -146,6 +165,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -153,9 +173,10 @@
                 android:id="@+id/calculatetv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="#000"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/half_shape"
                 android:foreground="@drawable/ripple_primary"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
@@ -164,37 +185,18 @@
                 android:textColor="#FFF"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/fimage"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/fimage" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fimage" />
 
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
-                android:background="#000"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:text="Nutrition Analysis"
-                android:textAlignment="center"
-                android:textColor="#FFF"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/fimage"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/fimage"
-                android:layout_width="176dp"
-                android:layout_height="256dp"
+                android:layout_width="156dp"
+                android:layout_height="220dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/shape_view"
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -214,78 +216,26 @@
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toTopOf="@+id/calculatetv"
+                app:layout_constraintBottom_toBottomOf="@+id/fimage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/fimage"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="#FFF"
                 android:paddingTop="16dp"
                 android:paddingBottom="32dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fimage"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintTop_toBottomOf="@+id/calculatetv">
 
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Name"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:text="Weight (Kg)"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cage" />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Weight Goal (Kg)"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/goalweight"
-                    app:layout_constraintTop_toBottomOf="@+id/cage" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:text="Age"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cname" />
 
                 <EditText
                     android:id="@+id/goalweight"
@@ -293,15 +243,19 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:ems="10"
+                    android:hint="Goal Weight (KG)"
                     android:inputType="numberDecimal"
                     android:nextFocusDown="@+id/heightft"
+                    android:paddingLeft="16dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.325"
                     app:layout_constraintStart_toEndOf="@+id/cweight"
-                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                    app:layout_constraintTop_toBottomOf="@+id/cage" />
 
                 <EditText
                     android:id="@+id/heightinch"
@@ -309,14 +263,18 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:ems="10"
+                    android:hint="Height (Inch)"
                     android:inputType="numberDecimal"
+                    android:paddingLeft="16dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.375"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/heightft"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintTop_toBottomOf="@+id/goalweight" />
 
                 <EditText
                     android:id="@+id/cage"
@@ -324,24 +282,16 @@
                     android:layout_width="154dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="16dp"
                     android:ems="10"
+                    android:hint="Age"
                     android:inputType="numberDecimal"
                     android:nextFocusDown="@+id/cweight"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:text="Height - Feet"
-                    android:textColor="#000"
+                    android:paddingLeft="16dp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cweight" />
+                    app:layout_constraintTop_toBottomOf="@+id/cname" />
 
                 <EditText
                     android:id="@+id/cname"
@@ -352,22 +302,15 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:ems="10"
+                    android:hint="Name"
                     android:inputType="textPersonName"
                     android:nextFocusDown="@+id/cage"
+                    android:paddingLeft="16dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Inch"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/heightinch"
-                    app:layout_constraintTop_toBottomOf="@+id/cweight" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/cweight"
@@ -375,12 +318,16 @@
                     android:layout_width="154dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="16dp"
                     android:ems="10"
+                    android:hint="Wight(KG)"
                     android:inputType="numberDecimal"
                     android:nextFocusDown="@+id/gweight"
+                    android:paddingLeft="16dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                    app:layout_constraintTop_toBottomOf="@+id/cage" />
 
                 <EditText
                     android:id="@+id/heightft"
@@ -388,30 +335,34 @@
                     android:layout_width="154dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="16dp"
                     android:ems="10"
+                    android:hint="Height (Feet)"
                     android:inputType="numberDecimal"
                     android:nextFocusDown="@+id/heightinch"
+                    android:paddingLeft="16dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintTop_toBottomOf="@+id/cweight" />
 
                 <RadioGroup
                     android:id="@+id/radiogroup"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="24dp"
                     android:layout_marginEnd="8dp"
                     android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/cage"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/cage"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3">
+                    app:layout_constraintTop_toTopOf="@+id/cage">
 
                     <RadioButton
                         android:id="@+id/radioButton2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight=".5"
                         android:text="Male"
                         android:textStyle="bold" />
 
@@ -423,6 +374,27 @@
                         android:text="Female"
                         android:textStyle="bold" />
                 </RadioGroup>
+
+                <TextView
+                    android:id="@+id/saveinfor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/half_shape"
+                    android:foreground="@drawable/ripple_primary"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="Save"
+                    android:textAlignment="center"
+                    android:textColor="#FFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/heightft" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

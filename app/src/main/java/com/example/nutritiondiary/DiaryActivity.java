@@ -101,7 +101,7 @@ public class DiaryActivity extends AppCompatActivity {
 
 
         Query fireQuery = firebaseFirestore.collection("parents").document(Parentid).collection("Childs")
-                .document(Childid).collection("Diary").document(s).collection("Meals");
+                .document(Childid).collection("Diary").document("2019330").collection("Meals");
 
         fireQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
